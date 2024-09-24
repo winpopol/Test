@@ -1,5 +1,5 @@
 const button = document.querySelector("#flee");
-const distanceThreshold = 100; // Distance at which the button should move away
+const distanceThreshold = 120; // Increased distance threshold for smoother avoidance
 
 // Use mousemove instead of mouseover for detecting proximity
 document.addEventListener("mousemove", function (e) {
@@ -18,9 +18,6 @@ document.addEventListener("mousemove", function (e) {
         const top = getRandomNum(window.innerHeight - button.offsetHeight);
         const left = getRandomNum(window.innerWidth - button.offsetWidth);
 
-        console.log("go to top:", top);
-        console.log("go to left:", left);
-
         // Move the button to the new position
         moveElement(button, "left", left);
         moveElement(button, "top", top);
@@ -31,8 +28,9 @@ const moveElement = (element, animeType, pixels) => {
     anime({
         targets: element,
         [animeType]: `${pixels}px`,
-        easing: "easeOutElastic(1, .10)", // Animation easing effect
-    }).play();
+        easing: "easeOutCirc", // Changed easing to a smoother curve
+        duration: 500, // Increased duration for smoother movement
+    });
 };
 
 // Update the getRandomNum function to accept a max value
