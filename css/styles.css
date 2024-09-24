@@ -1,0 +1,14 @@
+#flee {
+    position: absolute; /* Allows the button to move freely */
+    background-color: #ff6347; /* Button color */
+    padding: 10px; /* Button padding */
+    color: white; /* Button text color */
+    width: fit-content;
+    height: fit-content;
+    transition: all 0.2s;
+    cursor: pointer; /* Change cursor on hover */
+    border: none; /* No border for the button */
+    border-radius: 8px; /* Rounded corners for better aesthetics */
+    font-size: 18px; /* Font size for better readability */
+}
+    
