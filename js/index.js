@@ -1,24 +1,30 @@
 const button = document.querySelector("#flee");
+const distanceThreshold = 100; // Distance at which the button should move away
 
-// Use both mouse and touch events for mobile compatibility
-["mouseover", "click", "touchstart"].forEach(function (type) {
-    button.addEventListener(type, function (e) {
-        // Prevent default behavior for touch events
-        if (type === "touchstart") {
-            e.preventDefault(); // Prevent the default touch behavior
-        }
+// Use mousemove instead of mouseover for detecting proximity
+document.addEventListener("mousemove", function (e) {
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
 
+    const buttonRect = button.getBoundingClientRect();
+    const buttonX = buttonRect.left + buttonRect.width / 2;
+    const buttonY = buttonRect.top + buttonRect.height / 2;
+
+    const distance = Math.hypot(mouseX - buttonX, mouseY - buttonY);
+
+    // Check if the mouse is within the distance threshold
+    if (distance < distanceThreshold) {
         // Calculate new random positions
-        const top = getRandomNum(window.innerHeight - this.offsetHeight);
-        const left = getRandomNum(window.innerWidth - this.offsetWidth);
+        const top = getRandomNum(window.innerHeight - button.offsetHeight);
+        const left = getRandomNum(window.innerWidth - button.offsetWidth);
 
         console.log("go to top:", top);
         console.log("go to left:", left);
 
         // Move the button to the new position
-        moveElement(this, "left", left);
-        moveElement(this, "top", top);
-    });
+        moveElement(button, "left", left);
+        moveElement(button, "top", top);
+    }
 });
 
 const moveElement = (element, animeType, pixels) => {
