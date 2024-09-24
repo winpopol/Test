@@ -1,7 +1,7 @@
 const button = document.querySelector("#flee");
-const distanceThreshold = 250; // Increased distance threshold for smoother avoidance
+const distanceThreshold = 350; // Increased distance for earlier movement
 
-// Use mousemove instead of mouseover for detecting proximity
+// Use mousemove to detect proximity
 document.addEventListener("mousemove", function (e) {
     const mouseX = e.clientX;
     const mouseY = e.clientY;
@@ -28,12 +28,12 @@ const moveElement = (element, animeType, pixels) => {
     anime({
         targets: element,
         [animeType]: `${pixels}px`,
-        easing: "easeOutCirc", // Changed easing to a smoother curve
-        duration: 500, // Increased duration for smoother movement
+        easing: "easeOutQuad", // Smoother easing
+        duration: 1000, // Increased duration for slower movement
     });
 };
 
-// Update the getRandomNum function to accept a max value
+// Generate a random number within the max value
 const getRandomNum = (max) => {
-    return Math.floor(Math.random() * max); // Generate a random number within the specified max
+    return Math.floor(Math.random() * max);
 };
