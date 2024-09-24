@@ -1,5 +1,5 @@
 const button = document.querySelector("#flee");
-const distanceThreshold = 120; // Increased distance threshold for smoother avoidance
+const distanceThreshold = 250; // Increased distance threshold for smoother avoidance
 
 // Use mousemove instead of mouseover for detecting proximity
 document.addEventListener("mousemove", function (e) {
